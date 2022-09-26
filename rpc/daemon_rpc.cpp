@@ -91,7 +91,7 @@ int MainWindow::verifyNFAcreator(QString addr)       /// Verify NFA contract
     string nfaReadBuffer;
     char error[CURL_ERROR_SIZE];
 
-    ui->textBrowser->append("Checking NFA Creator");
+    ui->textBrowser->append("Checking NFA Creator on SCID: "+addr);
 
     QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{\"scid\":\""+addr+"\",  \"ringsize\":2, \"code\":false , \"variables\":true}}";
     string addThis = parts.toStdString();
@@ -159,7 +159,7 @@ int MainWindow::verifyAsset(QString addr)       /// Verify NFA balance
     string vAssetReadBuffer;
     char error[CURL_ERROR_SIZE];
 
-    ui->textBrowser->append("Checking Asset Blance");
+    ui->textBrowser->append("Checking Asset Blance: "+addr);
 
     rpc::assetConfirmed = false;
     QString parts = "{\"jsonrpc\":\"2.0\",\"id\": \"1\",\"method\": \"GetBalance\", \"params\": {\"scid\":\""+addr+"\"}}";
