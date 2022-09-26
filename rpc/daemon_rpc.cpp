@@ -134,6 +134,8 @@ int MainWindow::verifyNFAcreator(QString addr)       /// Verify NFA contract
       QString SIX = "2bd862dd28d700c99824b4b3efbd177a43acbc6ad74987238ef96058ca02d84301";
       QString Artificer = "1f6b84b0291cabbf3c53cdb217ebbc441a63b8d9a2372f56ad3f4d1daadef09d01";
 
+      ui->textBrowser->append("Creator Address: "+Creator_jv.toString());
+      ui->textBrowser->append("Artificer Address: "+ArtId_jv.toString());
       if((Creator_jv.toString() == AZY && ArtId_jv.toString() == Artificer) || (Creator_jv.toString() == SIX && ArtId_jv.toString() == Artificer)){
           ui->textBrowser->setTextBackgroundColor(green_textBG);
           ui->textBrowser->append("NFA Creator Verified");
