@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>979</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>dReam Tables - NFAVerify</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+	background-color: rgb(0, 0, 0);
+}
+
+QGroupBox {
+    border: 2px solid gray;
+    border-radius: 5px;
+}
+
+QPushButton:enabled{
+	color: rgb(255, 255, 255);
+	background-color: rgba(85, 88, 93, 150);
+    border: 2px solid #8f8f91;
+    border-radius: 6px;
+    min-width: 80px;
+}
+
+QPushButton:hover {
+	background-color: rgba(79, 186, 196, 150);
+}
+
+QPushButton:pressed {
+	background-color: rgb(56, 47, 165);
+}
+
+QPushButton:!enabled{
+    border: 2px solid;
+	border-color: rgba(143, 143, 145, 90);
+    border-radius: 6px;
+	color: rgba(0, 0, 0, 0);
+    border-radius: 6px;
+    min-width: 80px;
+}
+
+QLineEdit {
+    color: rgb(255, 255, 255);
+    border-style: inset;
+    border-width: 1px;
+    border-radius: 6px;
+	border-color: rgb(207, 207, 207);
+    padding: 3px;
+	background-color: rgb(25, 25, 25);
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0" colspan="2">
+     <widget class="QTextBrowser" name="textBrowser">
+      <property name="minimumSize">
+       <size>
+        <width>961</width>
+        <height>432</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTextBrowser{
+    border-color: rgb(128, 128, 128);
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 6px;
+    padding: 3px;
+    background-color: rgba(85, 88, 93, 150);
+    color: rgb(255, 255, 255);
+}
+</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="clearButton">
+      <property name="text">
+       <string>Clear Display</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1" rowspan="2">
+     <widget class="QGroupBox" name="rpcGroupBox">
+      <property name="minimumSize">
+       <size>
+        <width>621</width>
+        <height>101</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>621</width>
+        <height>101</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+    border: 2px solid gray;
+    border-radius: 5px;
+	background-color: rgba(0, 0, 0, 180);
+}
+
+QGroupBox::title {
+	color: rgb(255, 255, 255);
+    subcontrol-origin: top;
+    subcontrol-position: top left; 
+    padding: 0 3px;
+    border: 2px solid gray;
+    border-bottom-right-radius: 6px;
+}
+
+QGroupBox::indicator {
+    width: 13px;
+    height: 13px;
+}</string>
+      </property>
+      <property name="title">
+       <string/>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="2" column="3">
+        <widget class="QPushButton" name="connectButton">
+         <property name="minimumSize">
+          <size>
+           <width>84</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>84</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>Connect</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="userpassInput">
+         <property name="minimumSize">
+          <size>
+           <width>414</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>615</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>Enter rpc login info</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="echoMode">
+          <enum>QLineEdit::Password</enum>
+         </property>
+         <property name="readOnly">
+          <bool>false</bool>
+         </property>
+         <property name="placeholderText">
+          <string>user:pass</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="daemonConnectedBox">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>90</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QCheckBox {
+	color: rgb(255, 255, 255);
+}</string>
+         </property>
+         <property name="text">
+          <string>Connected</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="autoExclusive">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" colspan="2">
+        <widget class="QLineEdit" name="daemonRPCinput">
+         <property name="minimumSize">
+          <size>
+           <width>414</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>615</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="placeholderText">
+          <string>Enter Daemon RPC Address</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QCheckBox" name="walletConnectedBox">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>90</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QCheckBox {
+	color: rgb(255, 255, 255);
+}</string>
+         </property>
+         <property name="text">
+          <string>Connected</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="autoExclusive">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1" colspan="2">
+        <widget class="QLineEdit" name="walletRPCinput">
+         <property name="minimumSize">
+          <size>
+           <width>414</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>615</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="placeholderText">
+          <string>Enter Wallet RPC Address</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QPushButton" name="assetsButton">
+      <property name="text">
+       <string>Check Assets</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>979</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
