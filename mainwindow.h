@@ -57,7 +57,7 @@ public:
     void loginInfo();
     int checkDaemon();
     int checkWallet();
-    QString readmeStandard(QString);
+    QString readmeStandard(QFile &);
     void AZYDS(QString);
     void AZYPC(QString);
     void AZYPCB(QString);

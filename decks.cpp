@@ -28,13 +28,23 @@ QString rpc::daemonAddress;
 QString rpc::playerAddress;
 
 
-QString MainWindow::readmeStandard(QString find)
+QString MainWindow::readmeStandard(QFile &file)
 {
-    find.remove(0, 123);
-    find.remove(0, 1);
-    find.chop(78);
-
-    return find;
+    QString scid;
+    QTextStream in(&file);
+    while (!in.atEnd())
+    {
+        QString s = "SCID:";
+        QString line = in.readLine();
+        QString check = line;
+        check.chop(65);
+        if(check == s){
+            scid = line;
+            scid.remove(0, 6);
+            return scid;
+        }
+    }
+    return scid;
 }
 
 
@@ -190,8 +200,7 @@ void MainWindow::AZYPC(QString pre)
         nfaDeck.open(QIODevice::ReadOnly);
 
         if(nfaDeck.exists()){
-            QString findAddr = nfaDeck.readAll();
-            findAddr = readmeStandard(findAddr);
+            QString findAddr = readmeStandard(nfaDeck);
             verifyNFAcreator(findAddr);
             if(rpc::assetConfirmed == true){
                 ui->textBrowser->setTextBackgroundColor(green_textBG);
@@ -222,8 +231,7 @@ void MainWindow::AZYPC(QString pre)
         nfaDeck.open(QIODevice::ReadOnly);
 
         if(nfaDeck.exists()){
-            QString findAddr = nfaDeck.readAll();
-            findAddr = readmeStandard(findAddr);
+            QString findAddr = readmeStandard(nfaDeck);
             verifyNFAcreator(findAddr);
             if(rpc::assetConfirmed == true){
                 ui->textBrowser->setTextBackgroundColor(green_textBG);
@@ -254,8 +262,7 @@ void MainWindow::AZYPC(QString pre)
         nfaDeck.open(QIODevice::ReadOnly);
 
         if(nfaDeck.exists()){
-            QString findAddr = nfaDeck.readAll();
-            findAddr = readmeStandard(findAddr);
+            QString findAddr = readmeStandard(nfaDeck);
             verifyNFAcreator(findAddr);
             if(rpc::assetConfirmed == true){
                 ui->textBrowser->setTextBackgroundColor(green_textBG);
@@ -284,8 +291,7 @@ void MainWindow::AZYPC(QString pre)
     nfaDeck.open(QIODevice::ReadOnly);
 
     if(nfaDeck.exists()){
-        QString findAddr = nfaDeck.readAll();
-        findAddr = readmeStandard(findAddr);
+        QString findAddr = readmeStandard(nfaDeck);
         verifyNFAcreator(findAddr);
         if(rpc::assetConfirmed == true){
             ui->textBrowser->setTextBackgroundColor(green_textBG);
@@ -323,8 +329,7 @@ void MainWindow::AZYPCB(QString pre)
         nfaBack.open(QIODevice::ReadOnly);
 
         if(nfaBack.exists()){
-            QString findAddr = nfaBack.readAll();
-            findAddr = readmeStandard(findAddr);
+            QString findAddr = readmeStandard(nfaBack);
             verifyNFAcreator(findAddr);
             if(rpc::assetConfirmed == true){
                 ui->textBrowser->setTextBackgroundColor(green_textBG);
@@ -354,8 +359,7 @@ void MainWindow::AZYPCB(QString pre)
         nfaBack.open(QIODevice::ReadOnly);
 
         if(nfaBack.exists()){
-            QString findAddr = nfaBack.readAll();
-            findAddr = readmeStandard(findAddr);
+            QString findAddr = readmeStandard(nfaBack);
             verifyNFAcreator(findAddr);
             if(rpc::assetConfirmed == true){
                 ui->textBrowser->setTextBackgroundColor(green_textBG);
@@ -385,8 +389,7 @@ void MainWindow::AZYPCB(QString pre)
         nfaBack.open(QIODevice::ReadOnly);
 
         if(nfaBack.exists()){
-            QString findAddr = nfaBack.readAll();
-            findAddr = readmeStandard(findAddr);
+            QString findAddr = readmeStandard(nfaBack);
             verifyNFAcreator(findAddr);
             if(rpc::assetConfirmed == true){
                 ui->textBrowser->setTextBackgroundColor(green_textBG);
@@ -414,8 +417,7 @@ void MainWindow::AZYPCB(QString pre)
     nfaBack.open(QIODevice::ReadOnly);
 
     if(nfaBack.exists()){
-        QString findAddr = nfaBack.readAll();
-        findAddr = readmeStandard(findAddr);
+        QString findAddr = readmeStandard(nfaBack);
         verifyNFAcreator(findAddr);
         if(rpc::assetConfirmed == true){
             ui->textBrowser->setTextBackgroundColor(green_textBG);

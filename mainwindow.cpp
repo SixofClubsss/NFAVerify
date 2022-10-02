@@ -103,6 +103,9 @@ void MainWindow::on_assetsButton_clicked()
     ui->textBrowser->append("Looking for NFA Card Backs in: "+pre);
     ui->textBrowser->setTextBackgroundColor(normal_textBG);
     AZYPCB(pre);
+    QTextCursor cursor = ui->textBrowser->textCursor();
+    cursor.setPosition(0);
+    ui->textBrowser->setTextCursor(cursor);
 }
 
 
