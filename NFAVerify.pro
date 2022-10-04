@@ -45,16 +45,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     decks.cpp \
+    hands/viewdeck.cpp \
     main.cpp \
     mainwindow.cpp \
     rpc/daemon_rpc.cpp \
-    rpc/wallet_rpc.cpp
+    rpc/wallet_rpc.cpp \
+    shared/filedownloader.cpp
 
 HEADERS += \
+    hands/handranks.h \
+    hands/viewdeck.h \
     mainwindow.h \
-    rpc/rpc.h
+    rpc/rpc.h \
+    shared/filedownloader.h
 
 FORMS += \
+    hands/viewdeck.ui \
     mainwindow.ui
 
 # Default rules for deployment.

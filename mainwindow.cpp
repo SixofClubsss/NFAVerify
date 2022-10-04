@@ -69,6 +69,8 @@ void MainWindow::setFonts(QString os)
     ui->daemonConnectedBox->setFont(ubuntuRegular);
     ui->walletConnectedBox->setFont(ubuntuRegular);
     ui->connectButton->setFont(ubuntuRegular);
+    ui->sharedButton->setFont(ubuntuRegular);
+    ui->viewButton->setFont(ubuntuRegular);
 }
 
 
@@ -80,9 +82,18 @@ void MainWindow::loginInfo()   /// Used to get wallet login info for wallet func
 }
 
 
+void MainWindow::loadDelay(int ms)
+{
+    QTime dieTime = QTime::currentTime().addMSecs(ms);
+    while (QTime::currentTime() < dieTime)
+    QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+}
+
+
 void MainWindow::on_clearButton_clicked()
 {
     ui->textBrowser->setText("");
+    clearSharedImages();
 }
 
 
@@ -116,5 +127,18 @@ void MainWindow::on_connectButton_clicked()
     rpc::playerAddress = ui->walletRPCinput->text()+"/json_rpc";
     checkDaemon();
     checkWallet();
+    fetchScData();
 }
 
+
+void MainWindow::on_sharedButton_clicked()
+{
+    loadFullDeck();
+}
+
+void MainWindow::on_viewButton_clicked()
+{
+    ViewDeck vd;
+    vd.setModal(true);
+    vd.exec();
+}

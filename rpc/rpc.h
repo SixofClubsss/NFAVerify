@@ -51,7 +51,9 @@ public:
     static std::string rpcLogin;
     static QString playerAddress;
     static QString daemonAddress;
-    static bool assetConfirmed;
+    static QString sharedFace;
+    static QString sharedBack;
+    static bool assetConfirmed; 
 };
 
 

@@ -215,3 +215,60 @@ int MainWindow::verifyAsset(QString addr)       /// Verify NFA balance
     }
     return 0;
 }
+
+
+int MainWindow::fetchScData()       /// Get SC variables
+{
+    CURL *curlFetch;
+    CURLcode res;
+    string fetchReadBuffer;
+    char error[CURL_ERROR_SIZE];
+
+    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\"95e69b382044ddc1467e030a80905cf637729612f65624e8d17bf778d4362b8d\" , \"code\":false , \"variables\":true}}";
+    string addThis = parts.toStdString();
+    const char *postthis = addThis.c_str();
+
+    string dStr = rpc::daemonAddress.toStdString();
+    const char *fdCh = dStr.c_str();
+
+    curlFetch = curl_easy_init();
+
+    if(curlFetch) {
+      struct curl_slist *headers = NULL;
+      /// Add request headers
+      headers = curl_slist_append(headers, "Accept: application/json");
+      headers = curl_slist_append(headers, "Content-Type: application/json");
+      headers = curl_slist_append(headers, "charset: utf-8");
+      /// cUrl options
+      curl_easy_setopt(curlFetch, CURLOPT_HTTPHEADER, headers);
+      curl_easy_setopt(curlFetch, CURLOPT_URL, fdCh);
+      curl_easy_setopt(curlFetch, CURLOPT_VERBOSE, 0L);
+      curl_easy_setopt(curlFetch, CURLOPT_CONNECTTIMEOUT, 4L);
+      curl_easy_setopt(curlFetch, CURLOPT_ERRORBUFFER, error);
+      /// curl_easy_setopt(curlFetch, CURLOPT_SSL_VERIFYPEER, 0);   *Remove comment for windows SSL disable*
+      curl_easy_setopt(curlFetch, CURLOPT_POSTFIELDS, postthis);
+      curl_easy_setopt(curlFetch, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
+      curl_easy_setopt(curlFetch, CURLOPT_WRITEFUNCTION, WriteCallback);
+      curl_easy_setopt(curlFetch, CURLOPT_WRITEDATA, &fetchReadBuffer);
+
+      res = curl_easy_perform(curlFetch);
+      curl_easy_cleanup(curlFetch);
+
+      QByteArray brw = fetchReadBuffer.c_str();
+      QJsonDocument cbDoc = QJsonDocument::fromJson(brw);
+      QJsonObject cbObj = cbDoc.object();
+      QJsonObject cbResults = cbObj["result"].toObject();
+      QJsonObject cbStringKeys = cbResults["stringkeys"].toObject();
+
+      QJsonValue Back_jv = cbStringKeys.value("Back:");
+      QJsonValue Face_jv = cbStringKeys.value("Face:");
+
+      rpc::sharedBack = Back_jv.toString();
+      rpc::sharedFace = Face_jv.toString();
+
+      ui->textBrowser->append("Fetched Shared Back Url: "+rpc::sharedBack);
+      ui->textBrowser->append("Fetched Shared Face Url: "+rpc::sharedFace);
+
+    }
+    return 0;
+}

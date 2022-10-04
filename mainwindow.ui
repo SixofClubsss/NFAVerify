@@ -60,7 +60,7 @@ QLineEdit {
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0" colspan="2">
+    <item row="0" column="0" colspan="3">
      <widget class="QTextBrowser" name="textBrowser">
       <property name="minimumSize">
        <size>
@@ -82,14 +82,7 @@ QLineEdit {
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QPushButton" name="clearButton">
-      <property name="text">
-       <string>Clear Display</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1" rowspan="2">
+    <item row="1" column="2" rowspan="3">
      <widget class="QGroupBox" name="rpcGroupBox">
       <property name="minimumSize">
        <size>
@@ -298,7 +291,76 @@ QGroupBox::indicator {
      </widget>
     </item>
     <item row="2" column="0">
+     <widget class="QPushButton" name="sharedButton">
+      <property name="minimumSize">
+       <size>
+        <width>164</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>164</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Load Shared</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="viewButton">
+      <property name="minimumSize">
+       <size>
+        <width>164</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>164</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>View Shared</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="2">
+     <widget class="QPushButton" name="clearButton">
+      <property name="minimumSize">
+       <size>
+        <width>334</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>334</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Clear Display</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0" colspan="2">
      <widget class="QPushButton" name="assetsButton">
+      <property name="minimumSize">
+       <size>
+        <width>334</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>334</width>
+        <height>20</height>
+       </size>
+      </property>
       <property name="text">
        <string>Check Assets</string>
       </property>
